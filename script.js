@@ -46,10 +46,8 @@
         
         //render last city 
         var btn = $("<button>");
-        btn.text(cityList[cityCount]);
+        btn.text(cityList[cityList.length]);
         savedCitiesEl.append(btn);
-
-
        
     };
     
@@ -124,14 +122,14 @@
                 }
             })
             
-
+            savedCitiesEl.innerHTML= "";
            //Create p tags for new cities 
         for (var i = 0; i < cityList.length; i++){
             var city = cityList[i];
             console.log(city);
-            var pCity =  $("<p>");
-            pCity.text(city);
-            savedCitiesEl.append(pCity);   
+            var btnCity =  $("<button>");
+            btnCity.text(city);
+            savedCitiesEl.append(btnCity);   
         }
             
         })
@@ -142,27 +140,27 @@
 
         
        
-        
+        // http://openweathermap.org/img/w/ + currentIcon + ".png"
         //add the citys to list 
        
 
 
 
 
-        $.ajax({
-            url: fiveDayURL,
-            method: "GET",
-        }).then(function (response) {
-            console.log(response);
-            //date 
+        // $.ajax({
+        //     url: fiveDayURL,
+        //     method: "GET",
+        // }).then(function (response) {
+        //     console.log(response);
+        //     //date 
             
-            //icon 
-            response.list[i].weather.icon
-            //temp convert to farenheight
-            response.list[i].temp.day 
-            //humidity 
-            response.list[i].humidity
-        })
+        //     //icon 
+        //     response.list[i].weather.icon
+        //     //temp convert to farenheight
+        //     response.list[i].temp.day 
+        //     //humidity 
+        //     response.list[i].humidity
+        // })
 
     } )
 
