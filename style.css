@@ -1,0 +1,16 @@
+header {
+    text-align: center;
+    background-color: black;
+    opacity: 0.6;
+    color:white;
+}
+
+#searchNav {
+    background-color: lightgrey;
+    opacity: 0.6;
+}
+
+#forecast {
+    border: 2px solid lightgrey;
+    border-radius: 5px;
+}
