@@ -15,14 +15,58 @@
 
 
 $(document).ready(function () {
-    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=Atlanta&appid=98291c34b7371fc6b13373019411c995";
+    var submitBtn = $("#submitBtn");
+    localStorage.getItem("cityName")
+    var cityList = []
 
-$.ajax({
-    url: queryURL,
-    method: "GET",
-}).then(function (response) {
-    console.log(response);
-})
+    submitBtn.on("click", function (event) {
+        event.preventDefault();
+
+        var cityName = $("#searchInput").val();
+        
+        console.log(cityName);
+
+        var weatherURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=98291c34b7371fc6b13373019411c995";
+        var fiveDayURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=98291c34b7371fc6b13373019411c995";
+
+
+
+        $.ajax({
+            url: weatherURL,
+            method: "GET",
+        }).then(function (response) {
+            console.log(response);
+            console.log(response.main.name);
+            console.log(response.main.temp);
+            console.log(response.main.humidity);
+            console.log(response.wind.speed);
+            // console.log(response.weather.icon);
+
+        })
+
+        
+        var addCity = cityList.push(cityName);
+        localStorage.setItem("city name",cityList);
+        // console.log(cityList);
+        
+        
+
+
+
+
+        // $.ajax({
+        //     url: fiveDayURL,
+        //     method: "GET",
+        // }).then(function (response) {
+        //     console.log(response);
+        // })
+
+    } )
+
+
+    
+    
+
 
 })
 
