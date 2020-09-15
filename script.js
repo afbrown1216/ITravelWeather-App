@@ -3,8 +3,8 @@
 // THEN I am presented with current and future conditions for that city and that city is added to the search history (check)
 // WHEN I view current weather conditions for that city
 // THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
-// WHEN I view the UV index ????
-// THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe
+// WHEN I view the UV index 
+// THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe (check)
 // WHEN I view future weather conditions for that city
 // THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, and the humidity
 // WHEN I click on a city in the search history
@@ -29,6 +29,7 @@
     var humidityEl = $("#humidity");
     var windEl = $("#wind");
     var uvEl = $("#uv");
+    
    
     var cityCount = 0;
 
@@ -148,12 +149,20 @@
 
 
 
-        // $.ajax({
-        //     url: fiveDayURL,
-        //     method: "GET",
-        // }).then(function (response) {
-        //     console.log(response);
-        // })
+        $.ajax({
+            url: fiveDayURL,
+            method: "GET",
+        }).then(function (response) {
+            console.log(response);
+            //date 
+            
+            //icon 
+            response.list[i].weather.icon
+            //temp convert to farenheight
+            response.list[i].temp.day 
+            //humidity 
+            response.list[i].humidity
+        })
 
     } )
 
