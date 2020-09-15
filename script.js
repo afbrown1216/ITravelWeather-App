@@ -14,6 +14,17 @@
 // ```
 
 
-queryURL = "api.openweathermap.org/data/2.5/weather?q=";
+$(document).ready(function () {
+    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=Atlanta&appid=98291c34b7371fc6b13373019411c995";
 
-apiKey = "98291c34b7371fc6b13373019411c995";
+$.ajax({
+    url: queryURL,
+    method: "GET",
+}).then(function (response) {
+    console.log(response);
+})
+
+})
+
+
+
