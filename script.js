@@ -79,8 +79,8 @@
         var lat 
         var lon 
         var weatherURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=98291c34b7371fc6b13373019411c995";
-        var fiveDayURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&units=imperial&appid=98291c34b7371fc6b13373019411c995";
-        var uvURL = "http://api.openweathermap.org/data/2.5/uvi?appid=98291c34b7371fc6b13373019411c995" + "&lat=" +  lat + "&lon=" +lon;
+        var fiveDayURL = "http://api.openweathermap.org/data/2.5/forecast/daily?q="+ cityName + "&cnt=5" + "&units=imperial&appid=98291c34b7371fc6b13373019411c995";
+        
 
 
         $.ajax({
@@ -114,6 +114,13 @@
             }).then(function (response) {
                 // console.log(response);
                 uvEl.text("UV Index: " + response.value);
+                if(response.value <= 2 ){
+                    uvEl.addClass("favorable")
+                }else if (response.value > 2 && response.value <7 ){
+                    uvEl.addClass("moderate")
+                }else if (response.value > 7 ){
+                    uvEl.addClass("severe")
+                }
             })
             
 
