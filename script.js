@@ -3,7 +3,7 @@
 // THEN I am presented with current and future conditions for that city and that city is added to the search history (check)
 // WHEN I view current weather conditions for that city
 // THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
-// WHEN I view the UV index
+// WHEN I view the UV index ????
 // THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe
 // WHEN I view future weather conditions for that city
 // THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, and the humidity
@@ -76,10 +76,11 @@
         var cityName = $("#searchInput").val();
         
         // console.log(cityName);
-
+        var lat 
+        var lon 
         var weatherURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=98291c34b7371fc6b13373019411c995";
         var fiveDayURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&units=imperial&appid=98291c34b7371fc6b13373019411c995";
-       
+        var uvURL = "http://api.openweathermap.org/data/2.5/uvi?appid=98291c34b7371fc6b13373019411c995" + "&lat=" +  lat + "&lon=" +lon;
 
 
         $.ajax({
@@ -99,6 +100,23 @@
             // console.log(response.wind.speed);
             windEl.text("Wind Speed: " + response.wind.speed + " MPH");
             // console.log(response.weather.icon); wont work 
+            //Lattitude and Longitude
+            
+            
+
+            lat = response.coord.lat;
+            lon = response.coord.lon;
+            var uvURL = "http://api.openweathermap.org/data/2.5/uvi?appid=98291c34b7371fc6b13373019411c995" + "&lat=" +  lat + "&lon=" +lon;
+
+            $.ajax({
+                url: uvURL, 
+                method: "GET",
+            }).then(function (response) {
+                // console.log(response);
+                uvEl.text("UV Index: " + response.value);
+            })
+            
+
            //Create p tags for new cities 
         for (var i = 0; i < cityList.length; i++){
             var city = cityList[i];
@@ -123,12 +141,12 @@
 
 
 
-        $.ajax({
-            url: fiveDayURL,
-            method: "GET",
-        }).then(function (response) {
-            console.log(response);
-        })
+        // $.ajax({
+        //     url: fiveDayURL,
+        //     method: "GET",
+        // }).then(function (response) {
+        //     console.log(response);
+        // })
 
     } )
 
