@@ -14,7 +14,7 @@
 // ```
 
 
-// $(document).ready(function () {
+$(document).ready(function () {
 
     
 
@@ -44,16 +44,7 @@
 // functions 
     
 
-    function renderRecentCity(){
-        //clear Saved Cities List 
-        savedCitiesEl.innerHTML = " ";
-        
-        //render last city 
-        var btn = $("<button>");
-        btn.text(cityList[cityList.length]);
-        savedCitiesEl.append(btn);
-       
-    };
+ 
     
 
     function storeCity(){
@@ -62,6 +53,7 @@
     }
     function init(){
        var storedCities =JSON.parse(localStorage.getItem("cityname", cityList ));
+       console.log(storedCities);
 
         if ( storedCities !== null ){
             cityList = storedCities;
@@ -71,6 +63,20 @@
 
     }
     
+
+    function renderRecentCity(){
+        //clear Saved Cities List 
+        savedCitiesEl.innerHTML = " ";
+        
+        for (var i = 0; i < cityList.length; i++){
+            var city = cityList[i];
+            console.log(city);
+            var btnCity =  $("<button>");
+            btnCity.text(city);
+            savedCitiesEl.append(btnCity);   
+        }
+       
+    };
     
 //event Listeners 
     submitBtn.on("click", function (event) {
@@ -145,7 +151,7 @@
                 
                     var pTemp = $("<p>");
                 // //temp convert to farenheight
-                    pTemp.text("Temp: " + Math.floor((response.daily[i].temp.max - 273.15)*1.800+32.00))
+                    pTemp.text("Temp: " + Math.floor((response.daily[i].temp.max - 273.15)*1.800+32.00));
                 
                 // //humidity 
                     var pHumid = $("<p>");
@@ -168,7 +174,7 @@
                 var btnCity =  $("<button>");
                 btnCity.text(city);
                 savedCitiesEl.append(btnCity);   
-            }
+            };
 
            
             cityList.push(cityName);
@@ -176,7 +182,7 @@
             cityCount++;
 
             
-        })
+        });
 
        
 
@@ -191,14 +197,14 @@
 
 
         
-    } )
+    } );
 
 
     
     
 
 
-// })
+});
 
 
 
