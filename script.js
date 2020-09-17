@@ -10,7 +10,7 @@
 // WHEN I click on a city in the search history
 // THEN I am again presented with current and future conditions for that city
 // WHEN I open the weather dashboard
-// THEN I am presented with the last searched city forecast
+// THEN I am presented with the last searched city forecast (check)
 // ```
 
 
@@ -22,7 +22,7 @@ $(document).ready(function () {
             var submitBtn = $("#submitBtn");
 
             var cityList = [];
-            console.log(cityList);
+            // console.log(cityList);
             var savedCitiesEl = $("#savedCities");
             // console.log(cityList);
             var cityNameEl = $("#cityName");
@@ -54,7 +54,7 @@ $(document).ready(function () {
 
             function init() {
                 var storedCities = JSON.parse(localStorage.getItem("cityname", cityList));
-                console.log(storedCities);
+                // console.log(storedCities);
 
                 if (storedCities !== null) {
                     cityList = storedCities;
@@ -77,90 +77,92 @@ $(document).ready(function () {
                     btnCity.text(city);
                     savedCitiesEl.append(btnCity);
                 }
-                console.log(cityList.length);
-                var histCityIndex = cityList.length;
-                console.log(cityList[histCityIndex]);
+                
+                // console.log(cityList[cityList.length-1]);
 
-                // var weatherURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityList[cityList.length] + "&units=imperial&appid=98291c34b7371fc6b13373019411c995";
-
-
-                // $.ajax({
-                //     url: weatherURL,
-                //     method: "GET",
-                // }).then(function (response) {
-                //     console.log(response);
-                //     // console.log(response.main.name); wont work 
-                //     iconId = response.weather[0].icon;
-                //     console.log(response.weather[0].icon);
-
-                //     var iconURL = "http://openweathermap.org/img/wn/" + iconId + "@2x.png"
-                //     // var icon = $("<img>");
-                //     currentIconId.attr("src", iconURL);
-
-                //     cityNameEl.text(cityList[cityList.length] + " ");
-
-                //     // console.log(response.main.temp);
-                //     // var tempK = response.main.temp;
-                //     // var temp = Math.floor((tempK - 273.15)*1.800+32.00);
-                //     tempEl.text("Temperature: " + Math.floor(response.main.temp));
-                //     // console.log(response.main.humidity);
-                //     humidityEl.text("Humidity: " + response.main.humidity + "%");
-                //     // if ()
-                //     // console.log(response.wind.speed);
-                //     windEl.text("Wind Speed: " + response.wind.speed + " MPH");
-                //     // console.log(response.weather.icon); wont work 
-                //     //Lattitude and Longitude
+                var weatherURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityList[cityList.length-1] + "&units=imperial&appid=98291c34b7371fc6b13373019411c995";
 
 
+                $.ajax({
+                    url: weatherURL,
+                    method: "GET",
+                }).then(function (response) {
+                    // console.log(response);
+                    // console.log(response.main.name); wont work 
+                    iconId = response.weather[0].icon;
+                    // console.log(response.weather[0].icon);
 
-                //     lat = response.coord.lat;
-                //     lon = response.coord.lon;
-                //     var fiveDayURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly&appid=98291c34b7371fc6b13373019411c995";
+                    var iconURL = "http://openweathermap.org/img/wn/" + iconId + "@2x.png"
+                    // var icon = $("<img>");
+                    currentIconId.attr("src", iconURL);
+
+                    cityNameEl.text(cityList[cityList.length-1] + " ");
+
+                    // console.log(response.main.temp);
+                    // var tempK = response.main.temp;
+                    // var temp = Math.floor((tempK - 273.15)*1.800+32.00);
+                    tempEl.text("Temperature: " + Math.floor(response.main.temp));
+                    // console.log(response.main.humidity);
+                    humidityEl.text("Humidity: " + response.main.humidity + "%");
+                    // if ()
+                    // console.log(response.wind.speed);
+                    windEl.text("Wind Speed: " + response.wind.speed + " MPH");
+                    // console.log(response.weather.icon); wont work 
+                    //Lattitude and Longitude
 
 
-                //     $.ajax({
-                //         url: fiveDayURL,
-                //         method: "GET",
-                //         }).then(function (response) {
+
+                    lat = response.coord.lat;
+                    lon = response.coord.lon;
+                    var fiveDayURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly&appid=98291c34b7371fc6b13373019411c995";
+
+
+                    $.ajax({
+                        url: fiveDayURL,
+                        method: "GET",
+                        }).then(function (response) {
                         
 
-                //         uvEl.text("UV Index: " + response.current.uvi);
+                        uvEl.text("UV Index: " + response.current.uvi);
 
-                //                 if (response.current.uvi <= 2) {
-                //                     uvEl.addClass("favorable")
-                //                 } else if (response.current.uvi > 7) {
-                //                     uvEl.addClass("severe")
-                //                 } else {
-                //                     uvEl.addClass("moderate")
-                //                 }
-                //                 for (var i = 1; i < 5; i++) {
-                //                     var div = $("<div>");
-                //                     div.addClass("fiveDayForecast")
+                                if (response.current.uvi <= 2) {
+                                    uvEl.addClass("favorable")
+                                } else if (response.current.uvi > 7) {
+                                    uvEl.addClass("severe")
+                                } else {
+                                    uvEl.addClass("moderate")
+                                }
+                                for (var i = 1; i < 5; i++) {
+                                    var div = $("<div>");
+                                    div.addClass("fiveDayForecast")
 
-                //                     //Weather Icon 
-                //                     iconId = response.daily[i].weather[0].icon;
-                //                     console.log(response.daily[i].weather[0].icon);
-                //                     var iconURL = "http://openweathermap.org/img/wn/" + iconId + "@2x.png"
-                //                     var icon = $("<img>");
-                //                     icon.attr("src", iconURL);
+                                    //Weather Icon 
+                                    iconId = response.daily[i].weather[0].icon;
+                                    // console.log(response.daily[i].weather[0].icon);
+                                    var iconURL = "http://openweathermap.org/img/wn/" + iconId + "@2x.png"
+                                    var icon = $("<img>");
+                                    icon.attr("src", iconURL);
 
 
-                //                     var pTemp = $("<p>");
-                //                     // //temp convert to farenheight
-                //                     pTemp.text("Temp: " + Math.floor((response.daily[i].temp.max - 273.15) * 1.800 + 32.00)) + "F";
+                                    var pTemp = $("<p>");
+                                    // //temp convert to farenheight
+                                    pTemp.text("Temp: " + Math.floor((response.daily[i].temp.max - 273.15) * 1.800 + 32.00)) + "F";
 
-                //                     // //humidity 
-                //                     var pHumid = $("<p>");
+                                    // //humidity 
+                                    var pHumid = $("<p>");
 
-                //                     pHumid.text("Humidity: " + response.daily[i].humidity + " %");
+                                    pHumid.text("Humidity: " + response.daily[i].humidity + " %");
 
-                //                     fiveDayEl.append(div);
-                //                     div.append(icon);
-                //                     div.append(pTemp);
-                //                     div.append(pHumid);
-                //                 };
-                //         });
-                //     });
+                                    fiveDayEl.append(div);
+                                    div.append(icon);
+                                    div.append(pTemp);
+                                    div.append(pHumid);
+                                };
+                        });
+                    });
+                    $(".btn").on("click", function () {
+                        
+                    })
             };
 
                 
@@ -214,7 +216,7 @@ $(document).ready(function () {
                             url: fiveDayURL,
                             method: "GET",
                         }).then(function (response) {
-                            console.log(response);
+                            // console.log(response);
 
                             uvEl.text("UV Index: " + response.current.uvi);
                             if (response.current.uvi <= 2) {
@@ -293,4 +295,4 @@ $(document).ready(function () {
 
 
 
-            });
+});
