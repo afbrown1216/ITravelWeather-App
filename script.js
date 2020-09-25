@@ -119,7 +119,7 @@ $(document).ready(function () {
 
             lat = response.coord.lat;
             lon = response.coord.lon;
-            var fiveDayURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly&appid=98291c34b7371fc6b13373019411c995";
+            var fiveDayURL = "http://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly&appid=98291c34b7371fc6b13373019411c995";
 
 
             $.ajax({
@@ -209,7 +209,7 @@ $(document).ready(function () {
 
                 lat = response.coord.lat;
                 lon = response.coord.lon;
-                var fiveDayURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly&appid=98291c34b7371fc6b13373019411c995";
+                var fiveDayURL = "http://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly&appid=98291c34b7371fc6b13373019411c995";
 
 
                 $.ajax({
@@ -310,7 +310,7 @@ $(document).ready(function () {
 
             lat = response.coord.lat;
             lon = response.coord.lon;
-            var fiveDayURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly&appid=98291c34b7371fc6b13373019411c995";
+            var fiveDayURL = "http://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly&appid=98291c34b7371fc6b13373019411c995";
 
 
             $.ajax({
