@@ -38,7 +38,7 @@ $(document).ready(function () {
     var cityCount = 0;
 
     //onLoad 
-    init()
+    init();
 
 
     // functions 
@@ -55,6 +55,7 @@ $(document).ready(function () {
     function init() {
         var storedCities = JSON.parse(localStorage.getItem("cityname", cityList));
         // console.log(storedCities);
+
 
         if (storedCities !== null) {
             cityList = storedCities;
@@ -82,7 +83,7 @@ $(document).ready(function () {
 
         // console.log(cityList[cityList.length-1]);
 
-        var weatherURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityList[cityList.length - 1] + "&units=imperial&appid=98291c34b7371fc6b13373019411c995";
+        var weatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityList[cityList.length - 1] + "&units=imperial&appid=98291c34b7371fc6b13373019411c995";
 
 
         $.ajax({
@@ -97,7 +98,7 @@ $(document).ready(function () {
             iconId = response.weather[0].icon;
             // console.log(response.weather[0].icon);
 
-            var iconURL = "http://openweathermap.org/img/wn/" + iconId + "@2x.png"
+            var iconURL = "https://openweathermap.org/img/wn/" + iconId + "@2x.png"
             // var icon = $("<img>");
             currentIconId.attr("src", iconURL);
 
@@ -119,7 +120,7 @@ $(document).ready(function () {
 
             lat = response.coord.lat;
             lon = response.coord.lon;
-            var fiveDayURL = "http://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly&appid=98291c34b7371fc6b13373019411c995";
+            var fiveDayURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly&appid=98291c34b7371fc6b13373019411c995";
 
 
             $.ajax({
@@ -147,7 +148,7 @@ $(document).ready(function () {
                     //Weather Icon 
                     iconId = response.daily[i].weather[0].icon;
                     // console.log(response.daily[i].weather[0].icon);
-                    var iconURL = "http://openweathermap.org/img/wn/" + iconId + "@2x.png"
+                    var iconURL = "https://openweathermap.org/img/wn/" + iconId + "@2x.png"
                     var icon = $("<img>");
                     icon.attr("src", iconURL);
 
@@ -172,7 +173,7 @@ $(document).ready(function () {
             event.stopPropagation();
             // console.log($(this).val())
             var clickedCity = $(this).val();
-            var weatherURL = "http://api.openweathermap.org/data/2.5/weather?q=" + clickedCity + "&units=imperial&appid=98291c34b7371fc6b13373019411c995";
+            var weatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + clickedCity + "&units=imperial&appid=98291c34b7371fc6b13373019411c995";
 
 
             $.ajax({
@@ -187,7 +188,7 @@ $(document).ready(function () {
                 iconId = response.weather[0].icon;
                 // console.log(response.weather[0].icon);
 
-                var iconURL = "http://openweathermap.org/img/wn/" + iconId + "@2x.png"
+                var iconURL = "https://openweathermap.org/img/wn/" + iconId + "@2x.png"
                 // var icon = $("<img>");
                 currentIconId.attr("src", iconURL);
 
@@ -209,7 +210,7 @@ $(document).ready(function () {
 
                 lat = response.coord.lat;
                 lon = response.coord.lon;
-                var fiveDayURL = "http://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly&appid=98291c34b7371fc6b13373019411c995";
+                var fiveDayURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly&appid=98291c34b7371fc6b13373019411c995";
 
 
                 $.ajax({
@@ -237,7 +238,7 @@ $(document).ready(function () {
                         //Weather Icon 
                         iconId = response.daily[i].weather[0].icon;
                         // console.log(response.daily[i].weather[0].icon);
-                        var iconURL = "http://openweathermap.org/img/wn/" + iconId + "@2x.png"
+                        var iconURL = "https://openweathermap.org/img/wn/" + iconId + "@2x.png"
                         var icon = $("<img>");
                         icon.attr("src", iconURL);
 
@@ -273,7 +274,7 @@ $(document).ready(function () {
 
         // console.log(cityName);
 
-        var weatherURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=98291c34b7371fc6b13373019411c995";
+        var weatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=98291c34b7371fc6b13373019411c995";
 
 
         $.ajax({
@@ -310,7 +311,7 @@ $(document).ready(function () {
 
             lat = response.coord.lat;
             lon = response.coord.lon;
-            var fiveDayURL = "http://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly&appid=98291c34b7371fc6b13373019411c995";
+            var fiveDayURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly&appid=98291c34b7371fc6b13373019411c995";
 
 
             $.ajax({
@@ -337,7 +338,7 @@ $(document).ready(function () {
                     //Weather Icon 
                     iconId = response.daily[i].weather[0].icon;
                     console.log(response.daily[i].weather[0].icon);
-                    var iconURL = "http://openweathermap.org/img/wn/" + iconId + "@2x.png"
+                    var iconURL = "https://openweathermap.org/img/wn/" + iconId + "@2x.png"
                     var icon = $("<img>");
                     icon.attr("src", iconURL);
 
