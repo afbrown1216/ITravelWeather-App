@@ -10,7 +10,7 @@ This app is a weather dashboard search engine. Utilizing the OpenWeather API you
 To get started search a city [here](https://afbrown1216.github.io/ITravelWeather-App/)
 
 ## Preview
-[Preview Image](./assets/preview.png)
+<img src="./assets/preview.png"/> 
 
 
 
